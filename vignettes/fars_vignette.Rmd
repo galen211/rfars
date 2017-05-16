@@ -9,52 +9,34 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+# `rfars`
+FARS is a nationwide census providing NHTSA, Congress and the American public yearly data regarding fatal injuries suffered in motor vehicle traffic crashes.
 
+This package gives the user the ability to plot all of the fatal traffic accidents for a particular year on a state map plot, which uses the `maps` package.  Below is information about the FARS data from the NHTSA's website.
 
-Vignettes are long form documentation commonly included in packages. Because they are part of the distribution of the package, they need to be as compact as possible. The `html_vignette` output type provides a custom style sheet (and tweaks some options) to ensure that the resulting html is as small as possible. The `html_vignette` format:
+- [FARS website](https://www.nhtsa.gov/research-data/fatality-analysis-reporting-system-fars)
+- [FARS Manual](https://crashstats.nhtsa.dot.gov/#/DocumentTypeList/4)
 
-- Never uses retina figures
-- Has a smaller default figure size
-- Uses a custom CSS stylesheet instead of the default Twitter Bootstrap style
+# Installation
+`devtools::install_packages("galen211/rfars")`
 
-## Vignette Info
+## Dependencies
++ dplyr
++ maps
++ graphics
++ tidyr
++ readr
 
-Note the various macros within the `vignette` section of the metadata block above. These are required in order to instruct R how to build the vignette. Note that you should change the `title` field and the `\VignetteIndexEntry` to match the title of your vignette.
+# Demos
+We can plot Michigan as follows
+```{r fig.show='hold'}
+library("rfars")
+rfars::fars_map_state(26,2013)
+```
 
-## Styles
-
-The `html_vignette` template includes a basic CSS theme. To override this theme you can specify your own CSS in the document metadata as follows:
-
-    output: 
-      rmarkdown::html_vignette:
-        css: mystyles.css
-
-## Figures
-
-The figure sizes have been customised so that you can easily put two images side-by-side. 
-
+We can plot New York as follows
 ```{r, fig.show='hold'}
-plot(1:10)
-plot(10:1)
+library("rfars")
+rfars::fars_map_state(36,2013)
 ```
 
-You can enable figure captions by `fig_caption: yes` in YAML:
-
-    output:
-      rmarkdown::html_vignette:
-        fig_caption: yes
-
-Then you can use the chunk option `fig.cap = "Your figure caption."` in **knitr**.
-
-## More Examples
-
-You can write math expressions, e.g. $Y = X\beta + \epsilon$, footnotes^[A footnote here.], and tables, e.g. using `knitr::kable()`.
-
-```{r, echo=FALSE, results='asis'}
-knitr::kable(head(mtcars, 10))
-```
-
-Also a quote using `>`:
-
-> "He who gives up [code] safety for [code] speed deserves neither."
-([via](https://twitter.com/hadleywickham/status/504368538874703872))
