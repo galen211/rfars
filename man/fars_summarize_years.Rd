@@ -10,9 +10,12 @@ fars_summarize_years(years)
 \item{years}{a vector of years from which to extract data from flat files.}
 }
 \value{
-a tidy data frame  with .
+a list with years as columns and counts of accidents as observations.
 }
 \description{
 Summarizes fars data by creating a table with years as columns and counts of
 observations for each month in each row.
+}
+\examples{
+\dontrun{fars_read_years(c(2013, 2014, 2015))}
 }

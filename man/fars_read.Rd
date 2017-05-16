@@ -19,5 +19,5 @@ This is a simple function that uses the `readr` package to read in a csv file
 and then uses `dplyr` to convert the data from the csv into a data frame.
 }
 \examples{
-data <- fars_read('myFile.csv')
+\dontrun{fars_read('myFile.csv')}
 }

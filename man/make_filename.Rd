@@ -16,5 +16,5 @@ a file string reading \code{"accident_[YEAR].csv.bz2"}
 This function creates a file string for an accident file based on the inputted year
 }
 \examples{
-make_filename("2009")
+\dontrun{ make_filename("2009")}
 }

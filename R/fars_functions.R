@@ -6,9 +6,9 @@
 #' to csv files, the function will take compressed csv files with the file extensions
 #' \code{.gz .bz2 .xz .zip}
 #' @return a data frame containing the parsed file data.
-#' @examples data <- fars_read('myFile.csv')
 #' @importFrom readr read_csv
 #' @importFrom dplyr tbl_df
+#' @examples \dontrun{fars_read('myFile.csv')}
 fars_read <- function(filename) {
         if(!file.exists(filename))
                 stop("file '", filename, "' does not exist")
@@ -23,10 +23,12 @@ fars_read <- function(filename) {
 #' This function creates a file string for an accident file based on the inputted year
 #' @param year a non-negative number that can be coerced into an integer
 #' @return a file string reading \code{"accident_[YEAR].csv.bz2"}
-#' @examples make_filename("2009")
+#' @examples
+#' \dontrun{ make_filename("2009")}
 make_filename <- function(year) {
         year <- as.integer(year)
-        sprintf("accident_%d.csv.bz2", year)
+        filename <- sprintf("accident_%d.csv.bz2", year)
+        system.file("inst","extdata",filename, package = "rfars")
 }
 
 #' Read multiple fars files
@@ -34,8 +36,10 @@ make_filename <- function(year) {
 #' This function attempts to read in data files given a vector of years.
 #' @param years a vector of years in YYYY format corresponding to files to be parsed.
 #' @return a data frame containing data from the files that have been parsed.
-#' @example fars_read_years(c(2009, 2010, 2011))
 #' @useDynLib dplyr
+#'
+#' @examples
+#' \dontrun{fars_read_years(c(2013, 2014, 2015))}
 fars_read_years <- function(years) {
         lapply(years, function(year) {
                 file <- make_filename(year)
@@ -55,11 +59,13 @@ fars_read_years <- function(years) {
 #' Summarizes fars data by creating a table with years as columns and counts of
 #' observations for each month in each row.
 #' @param years a vector of years from which to extract data from flat files.
-#' @return a tidy data frame  with .
-#' @importFrom dplyr bind_rows group_by summarize spread
+#' @return a list with years as columns and counts of accidents as observations.
+#' @importFrom dplyr bind_rows group_by summarize
 #' @importFrom tidyr spread
 #' @useDynLib dplyr
-#' @example fars_read_years(c(2009, 2010, 2011))
+#'
+#' @examples
+#' \dontrun{fars_read_years(c(2013, 2014, 2015))}
 fars_summarize_years <- function(years) {
         dat_list <- fars_read_years(years)
         dplyr::bind_rows(dat_list) %>%
@@ -73,9 +79,11 @@ fars_summarize_years <- function(years) {
 #' This function creates a state map with points representing accidents
 #' overlaid on the plotted map.
 #' @useDynLib dplyr
-#' @import graphics points
-#' @import maps map stateMapEnv
-#' @import dplyr filter
+#' @importFrom graphics points
+#' @importFrom maps map
+#' @importFrom  dplyr filter
+#' @examples
+#' \dontrun{fars_map_state(1, 2013)}
 #' @export
 fars_map_state <- function(state.num, year) {
         filename <- make_filename(year)

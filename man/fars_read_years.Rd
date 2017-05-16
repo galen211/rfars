@@ -15,3 +15,6 @@ a data frame containing data from the files that have been parsed.
 \description{
 This function attempts to read in data files given a vector of years.
 }
+\examples{
+\dontrun{fars_read_years(c(2013, 2014, 2015))}
+}

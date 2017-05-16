@@ -10,3 +10,6 @@ fars_map_state(state.num, year)
 This function creates a state map with points representing accidents
 overlaid on the plotted map.
 }
+\examples{
+\dontrun{fars_map_state(1, 2013)}
+}
