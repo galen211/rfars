@@ -36,7 +36,6 @@ make_filename <- function(year) {
 #' This function attempts to read in data files given a vector of years.
 #' @param years a vector of years in YYYY format corresponding to files to be parsed.
 #' @return a data frame containing data from the files that have been parsed.
-#' @useDynLib dplyr
 #'
 #' @examples
 #' \dontrun{fars_read_years(c(2013, 2014, 2015))}
@@ -62,7 +61,6 @@ fars_read_years <- function(years) {
 #' @return a list with years as columns and counts of accidents as observations.
 #' @importFrom dplyr bind_rows group_by summarize
 #' @importFrom tidyr spread
-#' @useDynLib dplyr
 #'
 #' @examples
 #' \dontrun{fars_read_years(c(2013, 2014, 2015))}
@@ -78,10 +76,9 @@ fars_summarize_years <- function(years) {
 #'
 #' This function creates a state map with points representing accidents
 #' overlaid on the plotted map.
-#' @useDynLib dplyr
 #' @importFrom graphics points
 #' @importFrom maps map
-#' @importFrom  dplyr filter
+#' @importFrom dplyr filter
 #' @examples
 #' \dontrun{fars_map_state(1, 2013)}
 #' @export
