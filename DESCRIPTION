@@ -1,16 +1,21 @@
 Package: rfars
 Title: Plotting utility for NHTSA data
-Version: 0.0.0.9000
+Version: 0.0.1.000
 Authors@R: person("Galen", "Simmons", email = "gs2592@columbia.edu", role = c("aut", "cre"))
 Description: This package gives users the ability to plot a state map of all the fatal road accidents that have occured in that state in years 2013-2015
 Depends: R (>= 3.3.2)
-Imports: dplyr
 License: MIT
 Encoding: UTF-8
 LazyData: true
 Suggests: testthat,
     knitr,
     rmarkdown,
-    dplyr
+    dplyr,
+    covr
 VignetteBuilder: knitr
 RoxygenNote: 6.0.1
+Imports: dplyr,
+    tidyr,
+    maps,
+    readr,
+    graphics
