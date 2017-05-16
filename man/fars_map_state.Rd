@@ -6,6 +6,11 @@
 \usage{
 fars_map_state(state.num, year)
 }
+\arguments{
+\item{state.num}{an integer state number}
+
+\item{year}{an integer year}
+}
 \description{
 This function creates a state map with points representing accidents
 overlaid on the plotted map.

@@ -28,7 +28,7 @@ fars_read <- function(filename) {
 make_filename <- function(year) {
         year <- as.integer(year)
         filename <- sprintf("accident_%d.csv.bz2", year)
-        system.file("inst","extdata",filename, package = "rfars")
+        system.file("extdata",filename, package = "rfars")
 }
 
 #' Read multiple fars files
@@ -76,6 +76,8 @@ fars_summarize_years <- function(years) {
 #'
 #' This function creates a state map with points representing accidents
 #' overlaid on the plotted map.
+#' @param state.num an integer state number
+#' @param year an integer year
 #' @importFrom graphics points
 #' @importFrom maps map
 #' @importFrom dplyr filter
